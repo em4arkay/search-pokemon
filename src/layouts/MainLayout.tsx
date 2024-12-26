@@ -5,11 +5,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Cards } from "@/components";
 
-export default function Home() {
+const MainLayout = () => {
   const [searchText, setSearchText] = useState("");
-
+  
   return (
-    <div className="font-[family-name:var(--font-jetbrains-mono)]">
+    <div>
       <div>
         <h3 className="text-2xl py-6 text-center">Search Your Pokémon!!</h3>
         <div className="grid w-full max-w-sm items-center gap-1.5">
@@ -32,4 +32,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default MainLayout;
