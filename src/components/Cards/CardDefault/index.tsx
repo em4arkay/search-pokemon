@@ -1,5 +1,4 @@
 import React from "react";
-import { useRouter } from "next/navigation";
 
 interface CardDefaultProps {
   imageSrc: string;
@@ -35,8 +34,6 @@ const CardDefault: React.FC<CardDefaultProps> = ({
   description,
   tags,
 }) => {
-  const router = useRouter();
-
   return (
     <div className="max-w-sm rounded-lg overflow-hidden shadow-lg bg-red-300 cursor-pointer">
       <div className="aspect-w-16 aspect-h-9">

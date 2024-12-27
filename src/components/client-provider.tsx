@@ -3,7 +3,7 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import { ApolloProvider } from "@apollo/client";
 import client from "@/lib/apolloClient";
-import { Navigation } from "@/components/Navigations";
+import { Navigation } from "@/components/Navigation";
 
 export default function ClientProviders({
   children,

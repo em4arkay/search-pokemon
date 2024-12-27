@@ -1,10 +1,10 @@
 import React, { ElementType, ReactNode } from "react";
 
 interface ContainerMainProps {
-  as?: ElementType; 
-  children: ReactNode; 
-  className?: string; 
-  [key: string]: any; 
+  as?: ElementType;
+  children: ReactNode;
+  className?: string;
+  [key: string]: unknown; 
 }
 
 const ContainerMain: React.FC<ContainerMainProps> = ({
@@ -14,10 +14,7 @@ const ContainerMain: React.FC<ContainerMainProps> = ({
   ...rest
 }) => {
   return (
-    <Element
-      {...rest}
-      className={`px-5 w-full m-auto ${className}`}
-    >
+    <Element {...rest} className={`px-5 w-full m-auto ${className}`}>
       {children}
     </Element>
   );

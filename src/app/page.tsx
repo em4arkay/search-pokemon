@@ -72,7 +72,6 @@ export default function Home() {
 
   const {
     loading: pokemonLoading,
-    error: pokemonError,
     data: pokemonData,
   } = useQuery<PokemonData, PokemonVars>(GET_POKEMON, {
     variables: { name: searchText },

@@ -1,8 +1,8 @@
+import React from "react";
 import Link from "next/link";
-import Containers from "../Containers";
-import Image from "next/image";
+import Containers from "./Containers";
 
-export const Navigation = () => {
+export const Navigation: React.FC = () => {
   return (
     <div className="sticky top-0 backdrop-blur-xl bg-[rgba(0,0,0,0.8)] border-b border-slate-800 z-50">
       <Containers.ContainerMain className="flex justify-between py-5" as="nav">
