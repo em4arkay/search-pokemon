@@ -17,6 +17,8 @@ export const GET_POKEMON = gql`
         id
         number
         name
+        types
+        image
       }
       weight {
         minimum

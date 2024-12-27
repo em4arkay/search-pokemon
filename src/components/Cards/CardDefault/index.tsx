@@ -7,7 +7,6 @@ interface CardDefaultProps {
   title: string;
   description: string;
   tags: string[];
-  onClick: () => void;
 }
 
 const tagColors: { [key: string]: string } = {
@@ -35,15 +34,11 @@ const CardDefault: React.FC<CardDefaultProps> = ({
   title,
   description,
   tags,
-  onClick,
 }) => {
   const router = useRouter();
 
   return (
-    <div
-      className="max-w-sm rounded-lg overflow-hidden shadow-lg bg-red-300 cursor-pointer"
-      onClick={onClick}
-    >
+    <div className="max-w-sm rounded-lg overflow-hidden shadow-lg bg-red-300 cursor-pointer">
       <div className="aspect-w-16 aspect-h-9">
         <img
           className="w-80 h-80 p-6 object-contain bg-white"

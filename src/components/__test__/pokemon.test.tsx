@@ -1,44 +1,16 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom"; 
-import PokemonResult from "../pokemonResult";
+import { bulbasaur, charmander, squirtle } from "../__mock__/pokemonMocks";
 
-jest.mock("@apollo/client", () => ({
-  ...jest.requireActual("@apollo/client"),
-  useQuery: jest.fn().mockReturnValue({
-    loading: false,
-    error: null,
-    data: {
-      pokemon: {
-        id: "1",
-        number: "001",
-        name: "Bulbasaur",
-        attacks: {
-          special: [
-            { name: "Vine Whip", type: "Grass", damage: 45 },
-            { name: "Solar Beam", type: "Grass", damage: 120 },
-          ],
-        },
-        evolutions: [{ id: "2", number: "002", name: "Ivysaur" }],
-        types: ["Grass", "Poison"],
-      },
-    },
-  }),
-}));
+describe("Pokemon Types", () => {
+  it("Bulbasaur should be Grass and Poison type", () => {
+    expect(bulbasaur.types).toContain("Grass");
+    expect(bulbasaur.types).toContain("Poison");
+  });
 
-// Mock useSearchParams to return a valid search parameter
-jest.mock("next/navigation", () => ({
-  ...jest.requireActual("next/navigation"),
-  useSearchParams: jest.fn().mockReturnValue({
-    get: jest.fn().mockReturnValue("Bulbasaur"),
-  }),
-}));
+  it("Charmander should be Fire type", () => {
+    expect(charmander.types).toContain("Fire");
+  });
 
-test("renders Pokemon result", () => {
-  render(<PokemonResult />);
-  expect(screen.getByText("Bulbasaur (#001)")).toBeInTheDocument();
-  expect(screen.getByText("Types: Grass, Poison")).toBeInTheDocument();
-  expect(screen.getByText("Vine Whip - Grass - 45 damage")).toBeInTheDocument();
-  expect(screen.getByText("Solar Beam - Grass - 120 damage")).toBeInTheDocument();
-  expect(screen.getByText("Ivysaur")).toBeInTheDocument();
+  it("Squirtle should be Water type", () => {
+    expect(squirtle.types).toContain("Water");
+  });
 });

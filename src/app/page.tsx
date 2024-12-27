@@ -1,13 +1,13 @@
 "use client";
+
 import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
-import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 import { GET_POKEMON_LIST } from "@/api/getPokemonList";
 import { GET_POKEMON } from "@/api/getPokemon";
 
 import { Cards, Containers, Forms } from "@/components";
-import PokemonResult from "@/components/pokemonResult";
 
 interface Pokemons {
   id: string;
@@ -69,11 +69,6 @@ interface PokemonVars {
 
 export default function Home() {
   const [searchText, setSearchText] = useState<string>("");
-  const [selectedPokemon, setSelectedPokemon] = useState<boolean>(false);
-
-  const searchParams = useSearchParams();
-  const name = searchParams.get("name");
-  const router = useRouter();
 
   const {
     loading: pokemonLoading,
@@ -96,11 +91,6 @@ export default function Home() {
 
   const handleSearch = (data: { name: string }) => {
     setSearchText(data.name);
-  };
-
-  const handleClick = (name: string) => {
-    router.push(`/?name=${name}`);
-    setSelectedPokemon(true);
   };
 
   if (pokemonsLoading || pokemonLoading) return <p>Loading...</p>;
@@ -132,30 +122,38 @@ export default function Home() {
 
       {searchText && pokemonData && pokemonData.pokemon ? (
         <div className="m-10 mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left gap-6">
-          <Cards.CardDefault
-            key={pokemonData?.pokemon?.id}
-            imageAlt={`${pokemonData?.pokemon?.name} Image`}
-            imageSrc={pokemonData?.pokemon?.image}
-            title={pokemonData?.pokemon?.name}
-            description={`${pokemonData?.pokemon?.types.join(
-              ", "
-            )} Type Pokémon`}
-            tags={pokemonData?.pokemon?.types}
-            onClick={() => handleClick(pokemonData?.pokemon?.name)}
-          />
+          <Link
+            href={`/pokemon/${pokemonData?.pokemon?.name}`}
+            passHref
+          >
+            <Cards.CardDefault
+              key={pokemonData?.pokemon?.id}
+              imageAlt={`${pokemonData?.pokemon?.name} Image`}
+              imageSrc={pokemonData?.pokemon?.image}
+              title={pokemonData?.pokemon?.name}
+              description={`${pokemonData?.pokemon?.types.join(
+                ", "
+              )} Type Pokémon`}
+              tags={pokemonData?.pokemon?.types}
+            />
+          </Link>
         </div>
       ) : (
         <div className="m-10 mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left gap-6">
           {pokemons.map((pokemon: Pokemons) => (
-            <Cards.CardDefault
+            <Link
               key={pokemon.id}
-              imageAlt={`${pokemon.name} Image`}
-              imageSrc={pokemon.image}
-              title={pokemon.name}
-              description={`${pokemon.types.join(", ")} Type Pokémon`}
-              tags={pokemon.types}
-              onClick={() => handleClick(pokemon.name)}
-            />
+              href={`/pokemon/${pokemon.name}`}
+              passHref
+            >
+              <Cards.CardDefault
+                imageAlt={`${pokemon.name} Image`}
+                imageSrc={pokemon.image}
+                title={pokemon.name}
+                description={`${pokemon.types.join(", ")} Type Pokémon`}
+                tags={pokemon.types}
+              />
+            </Link>
           ))}
         </div>
       )}

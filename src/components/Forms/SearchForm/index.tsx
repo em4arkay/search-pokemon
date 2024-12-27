@@ -10,15 +10,10 @@ interface FormData {
 
 interface SearchFormProps {
   value: string;
-  // onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (data: FormData) => void;
 }
 
-const SearchForm: React.FC<SearchFormProps> = ({
-  value,
-  // onChange,
-  onSubmit,
-}) => {
+const SearchForm: React.FC<SearchFormProps> = ({ value, onSubmit }) => {
   const {
     register,
     handleSubmit,
@@ -47,10 +42,6 @@ const SearchForm: React.FC<SearchFormProps> = ({
             placeholder="Pikachu, Bulbasaur..."
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-800 focus:border-red-800 sm:text-sm text-red-800"
             {...register("name", { required: "Name is required" })}
-            // onChange={(e) => {
-            //   setValue("name", e.target.value);
-            //   onChange(e);
-            // }}
           />
           {errors.name && (
             <p className="mt-2 text-sm text-red-600">{errors.name.message}</p>

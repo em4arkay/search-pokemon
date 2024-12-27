@@ -12,12 +12,6 @@ export const Navigation = () => {
         >
           search Pokémon
         </Link>
-        {/* <Link
-          href="/"
-          className="flex items-center justify-center gap-1 px-5 font-semibold text-black transition-colors bg-green-500 rounded-md duration-600 hover:bg-green-600"
-        >
-          search Pokémon
-        </Link> */}
       </Containers.ContainerMain>
     </div>
   );
